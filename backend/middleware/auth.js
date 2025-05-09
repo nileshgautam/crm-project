@@ -1,8 +1,5 @@
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET; // Use .env in real apps
-
-console.log(JWT_SECRET);
-
 // Verify token and attach user to request
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
