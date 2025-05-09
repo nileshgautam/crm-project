@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { authenticate, authorize } = require("../middleware/auth");
-const customerController = require("../controllers/customerController");
 const {
+  authenticate,
+  authorize,
   customerValidation,
-} = require("../middleware/validation/customerValidation");
+  validate,
+} = require("../middleware");
+
+const customerController = require("../controllers/customerController");
 
 router.get("/", authenticate, customerController.getAllCustomers);
 router.get("/:id", authenticate, customerController.getCustomer);
@@ -12,6 +15,7 @@ router.post(
   "/",
   authenticate,
   customerValidation,
+  validate,
   customerController.createCustomer
 );
 router.put("/:id", authenticate, customerController.updateCustomer);
